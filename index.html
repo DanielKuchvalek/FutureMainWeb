@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Utopia Corp. – weby, e-shopy a aplikace</title>
+  <meta name="description" content="Utopia Corp. navrhuje a staví weby, e-shopy a aplikace. Prohlédněte si proball.cz, Lynqo, LIONS Handball, handballturnaje.cz, Handball Camp a Meandrie.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="cs_CZ">
+  <meta property="og:title" content="Utopia Corp. – weby, e-shopy a aplikace">
+  <meta property="og:description" content="Místo, které neexistuje. Dokud ho nepostavíme.">
+  <meta property="og:image" content="assets/img/og.jpg?v=6">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=2">
+  <link rel="preload" href="assets/fonts/anybody-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/main.css?v=8">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('js');
+      // Pojistka: kdyby se skripty nenačetly, stránka se po chvíli ukáže i tak.
+      setTimeout(function () { root.classList.add('is-loaded'); }, 4500);
+    })();
+  </script>
+  <script type="module" src="assets/js/main.js?v=7"></script>
+</head>
+<body>
+  <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
+
+  <!-- Kurzor (jen myš) -->
+  <div class="cursor" aria-hidden="true">
+    <span class="cursor__ring"><span class="cursor__label" data-cursor-label></span></span>
+    <span class="cursor__dot"></span>
+  </div>
+
+  <header class="site-header" data-header>
+    <div class="site-header__inner">
+      <a class="brand" href="#top" aria-label="Utopia Corp. – na začátek">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <defs>
+            <mask id="brand-u-head"><rect width="32" height="32" fill="#fff"/><path d="M10.5 8.5v8.5a5.5 5.5 0 0 0 11 0V8.5" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round"/></mask>
+          </defs>
+          <rect width="32" height="32" rx="9" fill="currentColor" mask="url(#brand-u-head)"/>
+        </svg>
+        <span class="brand__name">Utopia Corp.</span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Hlavní navigace" data-nav>
+        <ul>
+          <li style="--i:0"><a href="#projekty">Projekty</a></li>
+          <li style="--i:1"><a href="#sluzby">Služby</a></li>
+          <li style="--i:2"><a href="#postup">Postup</a></li>
+          <li style="--i:3"><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <a class="pill pill--brand site-header__cta" href="#kontakt">Napište nám</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+        <span class="sr-only">Menu</span>
+        <span class="menu-toggle__lines" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="obsah">
+    <!-- ============ ÚVOD: logo poskládané z pixelů ============ -->
+    <section class="hero" id="top" aria-labelledby="hero-title" data-hero>
+      <canvas class="hero__canvas" aria-hidden="true" data-particles></canvas>
+      <div class="hero__orb" aria-hidden="true" data-orb></div>
+      <div class="hero__content">
+        <h1 class="sr-only" id="hero-title">Utopia Corp.</h1>
+        <p class="hero__logo" aria-hidden="true" data-logo>Utopia</p>
+        <p class="hero__tagline">Místo, které neexistuje. Dokud ho nepostavíme.</p>
+        <p class="hero__sub">Navrhujeme a&nbsp;stavíme weby, <span class="nowrap">e-shopy</span> a&nbsp;aplikace.</p>
+      </div>
+      <a class="scroll-down" href="#projekty">
+        <span class="sr-only">Přejít na projekty</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v13M6.5 12.5 12 18l5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </section>
+
+    <!-- ============ VÝPOVĚĎ ============ -->
+    <section class="statement" aria-label="O nás" data-pixels="10">
+      <p class="statement__text" data-words>Barvy, písmo i&nbsp;tón patří vám. Návrh, stavba a&nbsp;péče o&nbsp;projekt jsou naše.</p>
+    </section>
+
+    <!-- ============ PROJEKTY ============ -->
+    <section class="projects" id="projekty" aria-labelledby="projects-title" data-pixels="18">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title" id="projects-title">Projekty</h2>
+          <p class="section-lead">Všechno jsme navrhli a&nbsp;postavili sami. Kliknutím otevřete web projektu.</p>
+        </header>
+
+        <ul class="cards">
+          <li class="card" data-reveal>
+            <a class="card__link" href="https://www.proball.cz/" target="_blank" rel="noopener" data-cursor="Otevřít web">
+              <span class="card__frame skeleton"><img src="assets/img/work/proball-desktop.webp" alt="Úvodní stránka e-shopu proball.cz" width="1440" height="900" loading="lazy" decoding="async"></span>
+              <span class="card__meta">
+                <span class="card__logo card__logo--wide"><img src="assets/img/logos/proball.webp" alt="" width="900" height="195" loading="lazy"></span>
+                <span class="card__titles">
+                  <span class="card__name">proball.cz</span>
+                  <span class="card__kind">E-shop s&nbsp;míči</span>
+                </span>
+              </span>
+              <span class="card__claim"><span class="nowrap">E-shop</span>, který s&nbsp;výběrem míče poradí. Vlastní obchod, takže známe celou cestu od vzhledu webu po odeslaný balík.</span>
+            </a>
+          </li>
+
+          <li class="card" data-reveal style="--d:1">
+            <button class="card__link" type="button" data-video="assets/video/lynqo.mp4" data-poster="assets/video/lynqo-poster.webp" data-ratio="16 / 9" data-title="Lynqo – video ke spuštění" data-cursor="Přehrát video">
+              <span class="card__frame skeleton"><img src="assets/img/lynqo/desktop-dashboard.webp" alt="Aplikace Lynqo: přehled klubu" width="1600" height="1000" loading="lazy" decoding="async"></span>
+              <span class="card__meta">
+                <span class="card__logo"><img src="assets/img/logos/lynqo-mark.webp" alt="" width="200" height="186" loading="lazy"></span>
+                <span class="card__titles">
+                  <span class="card__name">Lynqo</span>
+                  <span class="card__kind">Aplikace pro sportovní kluby</span>
+                </span>
+                <span class="card__badge">Připravujeme spuštění</span>
+              </span>
+              <span class="card__claim">Konec chaosu ve skupinových chatech. Kalendář, docházka, omluvenky a&nbsp;platby v&nbsp;jedné aplikaci.</span>
+            </button>
+          </li>
+
+          <li class="card" data-reveal>
+            <a class="card__link" href="https://lionshandball.cz/" target="_blank" rel="noopener" data-cursor="Otevřít web">
+              <span class="card__frame skeleton"><img src="assets/img/sluzby/lions-zapasy.webp" alt="Nejbližší domácí zápasy na webu LIONS Handball" width="1200" height="750" loading="lazy" decoding="async"></span>
+              <span class="card__meta">
+                <span class="card__logo"><img src="assets/img/logos/lions.webp" alt="" width="261" height="360" loading="lazy"></span>
+                <span class="card__titles">
+                  <span class="card__name">LIONS Handball</span>
+                  <span class="card__kind">Klubový web</span>
+                </span>
+              </span>
+              <span class="card__claim">Web, který se aktualizuje sám. Zápasy, výsledky a&nbsp;živé skóre se načítají samy.</span>
+            </a>
+          </li>
+
+          <li class="card" data-reveal style="--d:1">
+            <a class="card__link" href="https://handballturnaje.cz/" target="_blank" rel="noopener" data-cursor="Otevřít web">
+              <span class="card__frame skeleton"><img src="assets/img/work/turnaje-desktop.webp" alt="Přehled turnajů na handballturnaje.cz" width="1440" height="900" loading="lazy" decoding="async"></span>
+              <span class="card__meta">
+                <span class="card__logo"><img src="assets/img/logos/turnaje.webp" alt="" width="256" height="256" loading="lazy"></span>
+                <span class="card__titles">
+                  <span class="card__name">handballturnaje.cz</span>
+                  <span class="card__kind">Portál turnajů</span>
+                </span>
+              </span>
+              <span class="card__claim">Všechny turnaje v&nbsp;házené na jednom místě, podle kraje a&nbsp;kategorie.</span>
+            </a>
+          </li>
+
+          <li class="card" data-reveal>
+            <a class="card__link" href="https://czechhandball.cz/" target="_blank" rel="noopener" data-cursor="Otevřít web">
+              <span class="card__frame skeleton"><img src="assets/img/projekty/camp.webp" alt="Program kempu na webu Handball Camp" width="1200" height="750" loading="lazy" decoding="async"></span>
+              <span class="card__meta">
+                <span class="card__logo"><img src="assets/img/logos/camp.webp" alt="" width="300" height="300" loading="lazy"></span>
+                <span class="card__titles">
+                  <span class="card__name">Handball Camp</span>
+                  <span class="card__kind">Web kempu s&nbsp;přihláškami</span>
+                </span>
+              </span>
+              <span class="card__claim">Přihláška na kemp za pár minut, potvrzení hned e-mailem.</span>
+            </a>
+          </li>
+
+          <li class="card" data-reveal style="--d:1">
+            <a class="card__link" href="https://meandrie.cz/" target="_blank" rel="noopener" data-cursor="Otevřít web">
+              <span class="card__frame skeleton"><img src="assets/img/work/meandrie-desktop.webp" alt="Úvodní stránka webu ambulance Meandrie" width="1440" height="900" loading="lazy" decoding="async"></span>
+              <span class="card__meta">
+                <span class="card__logo"><img src="assets/img/logos/meandrie.webp" alt="" width="532" height="350" loading="lazy"></span>
+                <span class="card__titles">
+                  <span class="card__name">Meandrie</span>
+                  <span class="card__kind">Web psychiatrické ambulance</span>
+                </span>
+              </span>
+              <span class="card__claim">Klidný web pro citlivé téma. Jen to podstatné a&nbsp;telefon pro objednání na každé obrazovce.</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SLUŽBY ============ -->
+    <section class="services" id="sluzby" aria-labelledby="services-title" data-pixels="16">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title" id="services-title">Co pro vás postavíme</h2>
+          <p class="section-lead">Od jednoduchého webu po <span class="nowrap">e-shop</span> a&nbsp;aplikaci.</p>
+        </header>
+
+        <ul class="bento">
+          <li class="tile tile--wide tile--web" data-reveal>
+            <div class="tile__text">
+              <h3 class="tile__title">Weby na míru</h3>
+              <p>Firemní, klubové i&nbsp;osobní weby. Navrhneme je podle vaší značky, postavíme rychlé a&nbsp;přehledné na mobilu a&nbsp;přidáme správu, kterou zvládnete sami.</p>
+            </div>
+            <div class="tile__media" aria-hidden="true">
+              <div class="peek peek--browser skeleton"><img src="assets/img/work/meandrie-desktop.webp" alt="" width="1440" height="900" loading="lazy" decoding="async"></div>
+              <div class="peek peek--phone skeleton"><img src="assets/img/work/meandrie-mobile.webp" alt="" width="780" height="1688" loading="lazy" decoding="async"></div>
+            </div>
+          </li>
+
+          <li class="tile tile--shop" data-reveal style="--d:1">
+            <div class="tile__text">
+              <h3 class="tile__title">E-shopy</h3>
+              <p>Vzhled, katalog, doprava a&nbsp;platby. Vlastní <span class="nowrap">e-shop</span> provozujeme, takže víme, co zákazníka zdrží a&nbsp;co ho přesvědčí.</p>
+            </div>
+            <div class="tile__media" aria-hidden="true">
+              <img class="ball ball--1" src="assets/img/sluzby/mic-rainbow.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+              <img class="ball ball--2" src="assets/img/sluzby/mic-molten.webp" alt="" width="640" height="626" loading="lazy" decoding="async">
+              <img class="ball ball--3" src="assets/img/sluzby/mic-phantom.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+            </div>
+          </li>
+
+          <li class="tile tile--app" data-reveal>
+            <div class="tile__text">
+              <h3 class="tile__title">Aplikace pro web a&nbsp;mobil</h3>
+              <p>Webové aplikace a&nbsp;aplikace pro iPhone a&nbsp;Android nad jedněmi daty. Od návrhu obrazovek po hotový produkt.</p>
+            </div>
+            <div class="tile__media" aria-hidden="true">
+              <div class="peek peek--phone peek--back skeleton"><img src="assets/img/lynqo/mobile-calendar.webp" alt="" width="780" height="1688" loading="lazy" decoding="async"></div>
+              <div class="peek peek--phone peek--front skeleton"><img src="assets/img/lynqo/mobile-home.webp" alt="" width="780" height="1688" loading="lazy" decoding="async"></div>
+            </div>
+          </li>
+
+          <li class="tile tile--wide tile--portal" data-reveal style="--d:1">
+            <div class="tile__text">
+              <h3 class="tile__title">Portály a&nbsp;přihlášky</h3>
+              <p>Uživatelské účty, registrace, databáze akcí, potvrzovací e-maily a&nbsp;pravidelné newslettery.</p>
+            </div>
+            <div class="tile__media" aria-hidden="true">
+              <div class="peek peek--browser skeleton"><img src="assets/img/work/turnaje-desktop.webp" alt="" width="1440" height="900" loading="lazy" decoding="async"></div>
+              <div class="peek peek--phone skeleton"><img src="assets/img/sluzby/camp-prihlaska.webp" alt="" width="600" height="1299" loading="lazy" decoding="async"></div>
+            </div>
+          </li>
+
+          <li class="tile tile--data" data-reveal>
+            <div class="tile__text">
+              <h3 class="tile__title">Napojení na data</h3>
+              <p>Výsledky, rozpisy a&nbsp;tabulky, které se načítají samy z&nbsp;jiných systémů. Nikdo nic nepřepisuje ručně.</p>
+            </div>
+            <div class="tile__media" aria-hidden="true">
+              <div class="peek peek--browser skeleton"><img src="assets/img/sluzby/lions-zapasy.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></div>
+            </div>
+          </li>
+
+          <li class="tile tile--wide tile--video" data-reveal style="--d:1">
+            <div class="tile__text">
+              <h3 class="tile__title">Videa ke spuštění</h3>
+              <p>Krátké video a&nbsp;grafika, se kterými novinku představíte na sociálních sítích. Ukázky si můžete pustit.</p>
+            </div>
+            <ul class="clips">
+              <li>
+                <button class="clip" type="button" data-video="assets/video/lynqo.mp4" data-poster="assets/video/lynqo-poster.webp" data-ratio="16 / 9" data-title="Lynqo – video ke spuštění" data-cursor="Přehrát">
+                  <span class="clip__thumb skeleton"><img src="assets/video/lynqo-poster.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"></span>
+                  <span class="clip__label"><span class="sr-only">Přehrát video: </span>Lynqo <small>23 s</small></span>
+                </button>
+              </li>
+              <li>
+                <button class="clip" type="button" data-video="assets/video/lions.mp4" data-poster="assets/video/lions-poster.webp" data-ratio="16 / 9" data-title="LIONS Handball – video ke spuštění webu" data-cursor="Přehrát">
+                  <span class="clip__thumb skeleton"><img src="assets/video/lions-poster.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"></span>
+                  <span class="clip__label"><span class="sr-only">Přehrát video: </span>LIONS Handball <small>22 s</small></span>
+                </button>
+              </li>
+              <li>
+                <button class="clip" type="button" data-video="assets/video/turnaje.mp4" data-poster="assets/video/turnaje-poster.webp" data-ratio="9 / 16" data-title="handballturnaje.cz – video ke spuštění" data-cursor="Přehrát">
+                  <span class="clip__thumb clip__thumb--portrait skeleton"><img src="assets/video/turnaje-poster.webp" alt="" width="720" height="1280" loading="lazy" decoding="async"><img class="clip__portrait" src="assets/video/turnaje-poster.webp" alt="" width="720" height="1280" loading="lazy" decoding="async"></span>
+                  <span class="clip__label"><span class="sr-only">Přehrát video: </span>handballturnaje.cz <small>21 s</small></span>
+                </button>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ POSTUP ============ -->
+    <section class="process" id="postup" aria-labelledby="process-title" data-pixels="12">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title" id="process-title">Jak to probíhá</h2>
+          <p class="section-lead">Od prvního rozhovoru po spuštěný web.</p>
+        </header>
+        <ol class="steps">
+          <li class="step" data-reveal>
+            <div class="step__stage" aria-hidden="true">
+              <div class="vig-chat">
+                <span class="vig-chat__in">Chystáme nový web klubu.</span>
+                <span class="vig-chat__out">Skvělé. Kdy se potkáme?</span>
+              </div>
+            </div>
+            <h3 class="step__title"><span class="step__num">1</span>Seznámení</h3>
+            <p>Řeknete nám, co potřebujete a&nbsp;proč. Ptáme se na cíle, ne jen na barvy.</p>
+          </li>
+          <li class="step" data-reveal style="--d:1">
+            <div class="step__stage" aria-hidden="true">
+              <div class="vig-design">
+                <span class="vig-design__type">Aa</span>
+                <span class="vig-design__swatches"><i style="--c: var(--brand)"></i><i style="--c: var(--violet)"></i><i style="--c: var(--p-proball)"></i><i style="--c: var(--ink)"></i></span>
+                <span class="vig-design__wire"><i></i><i></i><i></i></span>
+              </div>
+            </div>
+            <h3 class="step__title"><span class="step__num">2</span>Návrh</h3>
+            <p>Ukážeme, jak bude projekt vypadat a&nbsp;fungovat, ještě než začneme programovat.</p>
+          </li>
+          <li class="step" data-reveal style="--d:2">
+            <div class="step__stage" aria-hidden="true">
+              <span class="vig-check">
+                <span>Telefon</span>
+                <span>Počítač</span>
+                <span>Obsah</span>
+              </span>
+            </div>
+            <h3 class="step__title"><span class="step__num">3</span>Stavba</h3>
+            <p>Postavíme ho, naplníme obsahem a&nbsp;otestujeme na telefonu i&nbsp;počítači.</p>
+          </li>
+          <li class="step" data-reveal style="--d:3">
+            <div class="step__stage" aria-hidden="true">
+              <div class="vig-live">
+                <span class="vig-live__bar"><i></i><i></i><i></i></span>
+                <span class="vig-live__status"><b></b>Web je spuštěný</span>
+              </div>
+            </div>
+            <h3 class="step__title"><span class="step__num">4</span>Spuštění a&nbsp;péče</h3>
+            <p>Spustíme ho, představíme světu a&nbsp;dál se o&nbsp;něj staráme.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ KONTAKT ============ -->
+    <section class="contact" id="kontakt" aria-labelledby="contact-title" data-pixels="14">
+      <div class="container contact__grid">
+        <div class="contact__intro" data-reveal>
+          <h2 class="contact__title" id="contact-title">Máte nápad?</h2>
+          <p class="contact__sub">Postavíme ho.</p>
+          <p class="contact__lead">Napište nám pár vět o&nbsp;tom, co chystáte. Ozveme se a&nbsp;domluvíme další krok.</p>
+        </div>
+        <form class="form" action="kontakt.php" method="post" novalidate data-contact data-reveal style="--d:1">
+          <div class="form__row">
+            <div class="field">
+              <label for="f-name">Jméno</label>
+              <input id="f-name" name="jmeno" type="text" autocomplete="name" required minlength="2" maxlength="120" aria-describedby="f-name-err">
+              <p class="field__error" id="f-name-err"></p>
+            </div>
+            <div class="field">
+              <label for="f-email">E-mail</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="200" aria-describedby="f-email-err">
+              <p class="field__error" id="f-email-err"></p>
+            </div>
+          </div>
+          <fieldset class="field field--chips">
+            <legend>S&nbsp;čím pomůžeme</legend>
+            <label class="chip"><input type="checkbox" name="sluzby[]" value="Web"><span>Web</span></label>
+            <label class="chip"><input type="checkbox" name="sluzby[]" value="E-shop"><span>E-shop</span></label>
+            <label class="chip"><input type="checkbox" name="sluzby[]" value="Aplikace"><span>Aplikace</span></label>
+            <label class="chip"><input type="checkbox" name="sluzby[]" value="Něco jiného"><span>Něco jiného</span></label>
+          </fieldset>
+          <div class="field">
+            <label for="f-msg">Zpráva</label>
+            <textarea id="f-msg" name="zprava" rows="5" required minlength="10" maxlength="5000" placeholder="Co chystáte, do kdy a co vám chybí na současném řešení" aria-describedby="f-msg-err"></textarea>
+            <p class="field__error" id="f-msg-err"></p>
+          </div>
+          <div class="form__hp" aria-hidden="true">
+            <label for="f-web">Tohle pole nevyplňujte</label>
+            <input id="f-web" name="web" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="hidden" name="t" value="">
+          <div class="form__foot">
+            <button class="pill pill--brand" type="submit" data-submit>Odeslat zprávu</button>
+            <p class="form__note">Údaje použijeme jen k&nbsp;odpovědi na vaši zprávu.</p>
+          </div>
+          <p class="form__status" role="status" data-form-status></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <p class="footer__name">
+          <svg class="footer__icon" viewBox="0 0 32 32" aria-hidden="true">
+            <defs>
+              <mask id="brand-u-foot"><rect width="32" height="32" fill="#fff"/><path d="M10.5 8.5v8.5a5.5 5.5 0 0 0 11 0V8.5" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round"/></mask>
+            </defs>
+            <rect width="32" height="32" rx="9" fill="currentColor" mask="url(#brand-u-foot)"/>
+          </svg>
+          Utopia Corp.
+        </p>
+        <p class="footer__claim">Weby, <span class="nowrap">e-shopy</span> a&nbsp;aplikace. Od návrhu po spuštění a&nbsp;péči.</p>
+      </div>
+      <nav aria-labelledby="footer-projects">
+        <h2 class="footer__heading" id="footer-projects">Projekty</h2>
+        <ul>
+          <li><a href="https://www.proball.cz/" target="_blank" rel="noopener">proball.cz</a></li>
+          <li><a href="#projekty">Lynqo</a></li>
+          <li><a href="https://lionshandball.cz/" target="_blank" rel="noopener">lionshandball.cz</a></li>
+          <li><a href="https://handballturnaje.cz/" target="_blank" rel="noopener">handballturnaje.cz</a></li>
+          <li><a href="https://czechhandball.cz/" target="_blank" rel="noopener">czechhandball.cz</a></li>
+          <li><a href="https://meandrie.cz/" target="_blank" rel="noopener">meandrie.cz</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="footer-page">
+        <h2 class="footer__heading" id="footer-page">Na této stránce</h2>
+        <ul>
+          <li><a href="#projekty">Projekty</a></li>
+          <li><a href="#sluzby">Služby</a></li>
+          <li><a href="#postup">Jak to probíhá</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer__bottom">
+      <p>© <span data-year>2026</span> Utopia Corp.</p>
+      <a href="#top">Zpět nahoru</a>
+    </div>
+  </footer>
+
+  <!-- Přehrávač videí ke spuštění -->
+  <dialog class="video-dialog" aria-label="Video ke spuštění" data-video-dialog>
+    <button class="icon-btn video-dialog__close" type="button" aria-label="Zavřít video" data-video-close>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <video controls playsinline preload="none"></video>
+  </dialog>
+</body>
+</html>

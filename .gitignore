@@ -1,0 +1,11 @@
+.DS_Store
+
+# zprávy a limity z kontaktního formuláře jsou data, ne kód
+storage/*
+!storage/.htaccess
+
+# pracovní soubory renderu videa
+_zdroje/reel/frames-*/
+_zdroje/reel/still-*.jpg
+_zdroje/reel/poster-*.png
+_zdroje/reel/log-*.txt

@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<title>Utopia reel stage</title>
+<style>
+  html, body { margin: 0; background: #070b1a; }
+  #stage { position: relative; overflow: hidden; background: #090e20; }
+  .shot { position: absolute; inset: 0; overflow: hidden; opacity: 0; }
+  .bg { position: absolute; inset: 0; }
+  .persp { position: absolute; inset: 0; perspective: 2400px; perspective-origin: 50% 46%; filter: blur(1.1px); }
+  .group { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; }
+  .dev { position: absolute; left: 0; top: 0; }
+  .browser {
+    overflow: hidden; border-radius: 18px; background: #fff;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.05), 0 90px 160px -50px rgba(0,0,0,.8), 0 30px 70px -30px rgba(0,0,0,.55);
+  }
+  .bar { position: relative; display: flex; align-items: center; justify-content: center; height: 46px; background: #eef1f5; border-bottom: 1px solid #dde3eb; }
+  .bar::before { content: ''; position: absolute; left: 20px; top: 17px; width: 12px; height: 12px; border-radius: 50%; background: #d1d8e2; box-shadow: 20px 0 0 #d1d8e2, 40px 0 0 #d1d8e2; }
+  .url { padding: 5px 20px; border-radius: 999px; background: #fff; color: #3f4a5e; font: 500 15px/1.3 -apple-system, 'Helvetica Neue', sans-serif; }
+  .scr { position: relative; overflow: hidden; background: #fff; }
+  .scr img { display: block; width: 100%; filter: brightness(.97) saturate(1.08); }
+  .phone {
+    padding: 13px; border-radius: 60px; background: #0b0d12;
+    box-shadow: inset 0 0 0 2px #2b303b, 0 80px 130px -40px rgba(0,0,0,.85), 0 26px 50px -26px rgba(0,0,0,.6);
+  }
+  .phone .scr { border-radius: 47px; }
+  .sheen { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(125deg, rgba(255,255,255,.16), rgba(255,255,255,0) 38%); }
+  .dof { position: absolute; left: 0; right: 0; pointer-events: none; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+  .dof.top { top: 0; height: 36%; -webkit-mask-image: linear-gradient(#000, transparent); mask-image: linear-gradient(#000, transparent); }
+  .dof.bot { bottom: 0; height: 36%; -webkit-mask-image: linear-gradient(transparent, #000); mask-image: linear-gradient(transparent, #000); }
+  .grade { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 95% at 50% 50%, rgba(4,6,16,0) 45%, rgba(4,6,16,.38) 100%); }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+const IMG = new URL('../../assets/img/', location.href).href;
+const P = new URLSearchParams(location.search);
+const MOBILE = P.get('o') === 'm';
+const W = MOBILE ? 1080 : 1920;
+const H = MOBILE ? 1920 : 1080;
+
+// Časování: každý záběr D s, prolínačka F s na konci záběru. Smyčka T = 6·D.
+const D = 5, F = 0.6, T = 6 * D;
+
+// src: [soubor, šířka zdroje, výška zdroje]
+const S = {
+  proD: ['work/proball-desktop-full.webp', 1440, 4600], proM: ['work/proball-mobile-full.webp', 780, 4800],
+  lyD: ['lynqo/desktop-dashboard.webp', 1600, 1000], lyCal: ['lynqo/desktop-calendar.webp', 1600, 1000],
+  lyHome: ['lynqo/mobile-home.webp', 780, 1688], lyCalM: ['lynqo/mobile-calendar.webp', 780, 1688],
+  lyChat: ['lynqo/mobile-chat.webp', 780, 1688], lyPay: ['lynqo/mobile-payments.webp', 780, 1688], lyAtt: ['lynqo/mobile-attendance.webp', 780, 1688],
+  liD: ['work/lions-desktop-full.webp', 1440, 4600], liM: ['work/lions-mobile-full.webp', 780, 4800],
+  tuD: ['work/turnaje-desktop-full.webp', 1440, 2027], tuM: ['work/turnaje-mobile-full.webp', 780, 4800],
+  caD: ['work/camp-desktop-full.webp', 1440, 4600], caM: ['work/camp-mobile-full.webp', 780, 4800],
+  meD: ['work/meandrie-desktop-full.webp', 1440, 3056], meM: ['work/meandrie-mobile-full.webp', 780, 4800],
+};
+
+// Kompozice: kamera (skupina) se během záběru lineárně posune z `from` do `to`.
+// Zařízení: x, y, z = střed v px vůči středu scény; r = [rx, ry, rz] ve stupních; s = rozsah scrollu ve zdrojových px.
+const DESKTOP = [
+  { key: 'proball', glow: ['#ff7a00', '78% 72%', '#3b1d6e', '18% 20%'],
+    cam: { from: [70, 10, -60, 0, 0, 0], to: [-70, -10, 50, 0, 0, 1.5] },
+    dev: [
+      { t: 'b', src: 'proD', url: 'proball.cz', w: 1260, x: -135, y: 30, z: 0, r: [32, 0, -12], s: [700, 2050] },
+      { t: 'p', src: 'proM', w: 333, x: 585, y: 130, z: 260, r: [20, -6, -10], s: [480, 2300] },
+    ] },
+  { key: 'lynqo', glow: ['#2563eb', '30% 75%', '#0ea5e9', '80% 20%'],
+    cam: { from: [170, 0, -40, 0, 0, 0], to: [-170, 0, 60, 0, 0, 0] },
+    dev: [
+      { t: 'b', src: 'lyD', url: 'Lynqo', w: 1512, x: 0, y: -80, z: -900, r: [18, 0, -8], s: [0, 0], blur: 5 },
+      { t: 'p', src: 'lyHome', w: 342, x: -702, y: 40, z: 0, r: [16, 0, -8], s: [0, 0] },
+      { t: 'p', src: 'lyCalM', w: 342, x: -243, y: -20, z: 60, r: [16, 0, -8], s: [0, 0] },
+      { t: 'p', src: 'lyChat', w: 342, x: 216, y: 40, z: 0, r: [16, 0, -8], s: [0, 0] },
+      { t: 'p', src: 'lyPay', w: 342, x: 675, y: -20, z: 60, r: [16, 0, -8], s: [0, 0] },
+    ] },
+  { key: 'lions', glow: ['#be1e3e', '75% 30%', '#1e3a8a', '20% 80%'],
+    cam: { from: [-60, 0, -70, 0, 3, 0], to: [60, 0, 50, 0, -2, 0] },
+    dev: [
+      { t: 'b', src: 'liD', url: 'lionshandball.cz', w: 1310, x: 99, y: -10, z: 0, r: [6, -24, 0], s: [800, 2250] },
+      { t: 'p', src: 'liM', w: 333, x: -630, y: 90, z: 320, r: [4, -18, 0], s: [1700, 3500] },
+    ] },
+  { key: 'turnaje', glow: ['#d92d2d', '80% 75%', '#16203a', '20% 20%'],
+    cam: { from: [0, 70, -50, 0, 0, 0], to: [0, -60, 70, 0, 0, -1.5] },
+    dev: [
+      { t: 'b', src: 'tuD', url: 'handballturnaje.cz', w: 1378, x: 54, y: -10, z: 0, r: [36, 0, 10], s: [0, 1000] },
+      { t: 'p', src: 'tuM', w: 333, x: -594, y: 150, z: 300, r: [24, 0, 10], s: [700, 2600] },
+    ] },
+  { key: 'camp', glow: ['#6e2f9b', '22% 72%', '#c026d3', '80% 25%'],
+    cam: { from: [-70, 0, -60, 0, 0, 0], to: [70, 0, 60, 0, 0, -1.5] },
+    dev: [
+      { t: 'b', src: 'caD', url: 'czechhandball.cz', w: 1260, x: 126, y: 30, z: 0, r: [30, 0, 12], s: [880, 2300] },
+      { t: 'p', src: 'caM', w: 333, x: -585, y: 120, z: 270, r: [20, 6, 11], s: [1900, 3600] },
+    ] },
+  { key: 'meandrie', glow: ['#0f8a45', '25% 30%', '#f5b13d', '82% 80%'],
+    cam: { from: [70, 0, -70, 0, -3, 0], to: [-70, 0, 50, 0, 2, 0] },
+    dev: [
+      { t: 'b', src: 'meD', url: 'meandrie.cz', w: 1310, x: -99, y: -10, z: 0, r: [6, 24, 0], s: [0, 1450] },
+      { t: 'p', src: 'meM', w: 333, x: 630, y: 90, z: 320, r: [4, 18, 0], s: [0, 2000] },
+    ] },
+];
+
+const MOBILE_SHOTS = [
+  { key: 'proball', glow: ['#ff7a00', '70% 80%', '#3b1d6e', '25% 15%'],
+    cam: { from: [0, 90, -60, 0, 0, 0], to: [0, -90, 50, 0, 0, 1.5] },
+    dev: [
+      { t: 'b', src: 'proD', url: 'proball.cz', w: 1500, x: 120, y: -420, z: 0, r: [30, 0, -14], s: [700, 1900] },
+      { t: 'p', src: 'proM', w: 470, x: -170, y: 470, z: 220, r: [18, 0, -14], s: [480, 2100] },
+    ] },
+  { key: 'lynqo', glow: ['#2563eb', '30% 80%', '#0ea5e9', '80% 15%'],
+    cam: { from: [0, 120, -40, 0, 0, 0], to: [0, -120, 60, 0, 0, 0] },
+    dev: [
+      { t: 'b', src: 'lyD', url: 'Lynqo', w: 1700, x: 0, y: -60, z: -1000, r: [18, 0, -8], s: [0, 0], blur: 5 },
+      { t: 'p', src: 'lyHome', w: 420, x: -250, y: -620, z: 0, r: [16, 0, -8], s: [0, 0] },
+      { t: 'p', src: 'lyCalM', w: 420, x: 260, y: -470, z: 60, r: [16, 0, -8], s: [0, 0] },
+      { t: 'p', src: 'lyChat', w: 420, x: -260, y: 470, z: 60, r: [16, 0, -8], s: [0, 0] },
+      { t: 'p', src: 'lyPay', w: 420, x: 250, y: 620, z: 0, r: [16, 0, -8], s: [0, 0] },
+    ] },
+  { key: 'lions', glow: ['#be1e3e', '75% 25%', '#1e3a8a', '20% 80%'],
+    cam: { from: [-40, 60, -70, 0, 2, 0], to: [40, -60, 50, 0, -2, 0] },
+    dev: [
+      { t: 'b', src: 'liD', url: 'lionshandball.cz', w: 1400, x: 60, y: -400, z: 0, r: [6, -26, 0], s: [800, 2100] },
+      { t: 'p', src: 'liM', w: 470, x: 170, y: 500, z: 260, r: [4, -18, 0], s: [1700, 3300] },
+    ] },
+  { key: 'turnaje', glow: ['#d92d2d', '75% 80%', '#16203a', '20% 15%'],
+    cam: { from: [0, 90, -50, 0, 0, 0], to: [0, -80, 70, 0, 0, -1.5] },
+    dev: [
+      { t: 'b', src: 'tuD', url: 'handballturnaje.cz', w: 1500, x: 0, y: -380, z: 0, r: [36, 0, 10], s: [0, 1000] },
+      { t: 'p', src: 'tuM', w: 470, x: -160, y: 520, z: 260, r: [24, 0, 10], s: [700, 2400] },
+    ] },
+  { key: 'camp', glow: ['#6e2f9b', '25% 80%', '#c026d3', '78% 20%'],
+    cam: { from: [0, 90, -60, 0, 0, 0], to: [0, -90, 60, 0, 0, -1.5] },
+    dev: [
+      { t: 'b', src: 'caD', url: 'czechhandball.cz', w: 1500, x: -60, y: -400, z: 0, r: [30, 0, 12], s: [880, 2100] },
+      { t: 'p', src: 'caM', w: 470, x: 180, y: 500, z: 230, r: [20, 6, 11], s: [1900, 3400] },
+    ] },
+  { key: 'meandrie', glow: ['#0f8a45', '25% 20%', '#f5b13d', '80% 85%'],
+    cam: { from: [40, 60, -70, 0, -2, 0], to: [-40, -60, 50, 0, 2, 0] },
+    dev: [
+      { t: 'b', src: 'meD', url: 'meandrie.cz', w: 1400, x: -60, y: -400, z: 0, r: [6, 26, 0], s: [0, 1300] },
+      { t: 'p', src: 'meM', w: 470, x: -170, y: 500, z: 260, r: [4, 18, 0], s: [0, 1900] },
+    ] },
+];
+
+const SHOTS = MOBILE ? MOBILE_SHOTS : DESKTOP;
+const stage = document.getElementById('stage');
+stage.style.width = W + 'px';
+stage.style.height = H + 'px';
+
+const lerp = (a, b, t) => a + (b - a) * t;
+const built = SHOTS.map((cfg) => {
+  const shot = document.createElement('div');
+  shot.className = 'shot';
+  const [c1, p1, c2, p2] = cfg.glow;
+  const bg = document.createElement('div');
+  bg.className = 'bg';
+  bg.style.background = `radial-gradient(70% 75% at ${p1}, ${c1}c0, transparent 72%), radial-gradient(60% 65% at ${p2}, ${c2}90, transparent 72%), linear-gradient(160deg, #3d4b6e, #232d4a)`;
+  shot.append(bg);
+  const persp = document.createElement('div');
+  persp.className = 'persp';
+  const group = document.createElement('div');
+  group.className = 'group';
+  persp.append(group);
+  shot.append(persp);
+  const devs = cfg.dev.map((d) => {
+    const [file, sw, sh] = S[d.src];
+    const el = document.createElement('div');
+    el.className = 'dev ' + (d.t === 'b' ? 'browser' : 'phone');
+    let screenW, screenH;
+    if (d.t === 'b') {
+      screenW = d.w;
+      screenH = Math.round(d.w * 0.625);
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      bar.innerHTML = `<span class="url">${d.url}</span>`;
+      el.append(bar);
+      el.style.width = d.w + 'px';
+    } else {
+      screenW = d.w - 26;
+      screenH = Math.round(screenW * 844 / 390);
+      el.style.width = d.w + 'px';
+    }
+    const scr = document.createElement('div');
+    scr.className = 'scr';
+    scr.style.height = screenH + 'px';
+    const img = new Image();
+    img.src = IMG + file;
+    scr.append(img);
+    el.append(scr);
+    const sheen = document.createElement('div');
+    sheen.className = 'sheen';
+    el.append(sheen);
+    if (d.blur) el.style.filter = `blur(${d.blur}px)`;
+    group.append(el);
+    return { d, el, img, k: screenW / sw };
+  });
+  const top = document.createElement('div');
+  top.className = 'dof top';
+  const bot = document.createElement('div');
+  bot.className = 'dof bot';
+  shot.append(top, bot);
+  stage.append(shot);
+  return { cfg, shot, group, devs };
+});
+const grade = document.createElement('div');
+grade.className = 'grade';
+stage.append(grade);
+
+// Vykreslí čas t (s) – deterministicky, bez závislosti na hodinách prohlížeče.
+window.render = (t) => {
+  t = ((t % T) + T) % T;
+  built.forEach((b, i) => {
+    // lokální čas záběru; záběr 0 se na konci smyčky prolíná zpět (lokální čas záporný)
+    let local = t - i * D;
+    if (i === 0 && t > T - F) local = t - T;
+    let alpha = 0;
+    if (local >= -F && local <= D) {
+      alpha = local < 0 ? (local + F) / F : 1;
+    }
+    // následující záběr přebírá: tento mizí až pod ním (vrstva výš = pozdější záběr)
+    b.shot.style.opacity = alpha.toFixed(4);
+    b.shot.style.zIndex = local < 0 ? 2 : 1;
+    if (alpha <= 0) return;
+    const u = (local + F) / (D + F);
+    const e = u; // lineárně – plynulý pohyb i přes prolínačky
+    const [fx, fy, fz, frx, fry, frz] = b.cfg.cam.from;
+    const [tx, ty, tz, trx, try_, trz] = b.cfg.cam.to;
+    b.group.style.transform = `translate3d(${lerp(fx, tx, e)}px, ${lerp(fy, ty, e)}px, ${lerp(fz, tz, e)}px) rotateX(${lerp(frx, trx, e)}deg) rotateY(${lerp(fry, try_, e)}deg) rotateZ(${lerp(frz, trz, e)}deg)`;
+    for (const { d, el, img, k } of b.devs) {
+      el.style.transform = `translate(-50%, -50%) translate3d(${d.x}px, ${d.y}px, ${d.z}px) rotateX(${d.r[0]}deg) rotateY(${d.r[1]}deg) rotateZ(${d.r[2]}deg)`;
+      const s = lerp(d.s[0], d.s[1], e) * k;
+      img.style.transform = `translate3d(0, ${-s.toFixed(2)}px, 0)`;
+    }
+  });
+};
+
+window.ready = Promise.all([...document.images].map((i) => i.decode().catch(() => {}))).then(() => {
+  render(0);
+  return { W, H, T, D, F };
+});
+</script>
+</body>
+</html>

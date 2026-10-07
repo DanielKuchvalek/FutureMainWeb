@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Utopia Corp. – weby, e-shopy a aplikace</title>
   <meta name="description" content="Utopia Corp. navrhuje a staví weby, e-shopy a aplikace. Prohlédněte si proball.cz, Lynqo, LIONS Handball, handballturnaje.cz, Handball Camp a Meandrie.">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#11152b">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="cs_CZ">
   <meta property="og:title" content="Utopia Corp. – weby, e-shopy a aplikace">
@@ -16,7 +16,7 @@
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=2">
   <link rel="preload" href="assets/fonts/anybody-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/main.css?v=8">
+  <link rel="stylesheet" href="assets/css/main.css?v=9">
   <script>
     (function () {
       var root = document.documentElement;
@@ -25,7 +25,7 @@
       setTimeout(function () { root.classList.add('is-loaded'); }, 4500);
     })();
   </script>
-  <script type="module" src="assets/js/main.js?v=7"></script>
+  <script type="module" src="assets/js/main.js?v=8"></script>
 </head>
 <body>
   <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
@@ -64,21 +64,28 @@
   </header>
 
   <main id="obsah">
-    <!-- ============ ÚVOD: logo poskládané z pixelů ============ -->
+    <!-- ============ ÚVOD ============ -->
     <section class="hero" id="top" aria-labelledby="hero-title" data-hero>
-      <canvas class="hero__canvas" aria-hidden="true" data-particles></canvas>
-      <div class="hero__orb" aria-hidden="true" data-orb></div>
+      <div class="hero__grid" aria-hidden="true"></div>
       <div class="hero__content">
-        <h1 class="sr-only" id="hero-title">Utopia Corp.</h1>
-        <p class="hero__logo" aria-hidden="true" data-logo>Utopia</p>
-        <p class="hero__tagline">Místo, které neexistuje. Dokud ho nepostavíme.</p>
-        <p class="hero__sub">Navrhujeme a&nbsp;stavíme weby, <span class="nowrap">e-shopy</span> a&nbsp;aplikace.</p>
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Malé studio. Velké možnosti.</p>
+        <h1 class="hero__title" id="hero-title">Váš další<br>velký <span>digitální</span><br><span class="hero__outline">krok.</span></h1>
+        <p class="hero__sub">Místo, které neexistuje. Dokud ho nepostavíme.<br>Navrhujeme a stavíme weby, e-shopy a aplikace.</p>
+        <div class="hero__actions">
+          <a class="pill hero__cta" href="#projekty">Prohlédnout projekty <span aria-hidden="true">↗</span></a>
+          <a class="hero__contact" href="#kontakt">Máte nápad? Pojďme si napsat <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
-      <a class="scroll-down" href="#projekty">
-        <span class="sr-only">Přejít na projekty</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v13M6.5 12.5 12 18l5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <div class="hero__art" aria-hidden="true">
+        <div class="orbit orbit--one"></div><div class="orbit orbit--two"></div><div class="orbit orbit--three"></div>
+        <div class="utopia-object"><span>u</span></div>
+        <span class="art-label art-label--top">Z nápadu do reality <i>↗</i></span>
+        <span class="art-label art-label--bottom"><i class="status-dot"></i> Design + technologie</span>
+        <span class="art-coordinate">UTOPIA® / DIGITAL STUDIO</span>
+      </div>
+      <div class="hero__footer"><span>Weby. E-shopy. Aplikace.</span><a href="#projekty">Objevte naši práci <span aria-hidden="true">↓</span></a><span>Od první skici po spuštění.</span></div>
     </section>
+    <div class="studio-strip" aria-label="Naše zaměření"><span>Design, který zaujme.</span><i aria-hidden="true">✳</i><span>Vývoj, který funguje.</span><i aria-hidden="true">✳</i><span>Detaily, na kterých záleží.</span><i aria-hidden="true">✳</i></div>
 
     <!-- ============ VÝPOVĚĎ ============ -->
     <section class="statement" aria-label="O nás" data-pixels="10">
@@ -89,7 +96,7 @@
     <section class="projects" id="projekty" aria-labelledby="projects-title" data-pixels="18">
       <div class="container">
         <header class="section-head" data-reveal>
-          <h2 class="section-title" id="projects-title">Projekty</h2>
+          <p class="section-kicker">01 / Vybraná práce</p><h2 class="section-title" id="projects-title">Nápady, které<br>už žijí online<span class="title-dot">.</span></h2>
           <p class="section-lead">Všechno jsme navrhli a&nbsp;postavili sami. Kliknutím otevřete web projektu.</p>
         </header>
 
@@ -186,7 +193,7 @@
     <section class="services" id="sluzby" aria-labelledby="services-title" data-pixels="16">
       <div class="container">
         <header class="section-head" data-reveal>
-          <h2 class="section-title" id="services-title">Co pro vás postavíme</h2>
+          <p class="section-kicker">02 / Co umíme</p><h2 class="section-title" id="services-title">Co pro vás postavíme</h2>
           <p class="section-lead">Od jednoduchého webu po <span class="nowrap">e-shop</span> a&nbsp;aplikaci.</p>
         </header>
 
@@ -280,7 +287,7 @@
     <section class="process" id="postup" aria-labelledby="process-title" data-pixels="12">
       <div class="container">
         <header class="section-head" data-reveal>
-          <h2 class="section-title" id="process-title">Jak to probíhá</h2>
+          <p class="section-kicker">03 / Od nápadu k realitě</p><h2 class="section-title" id="process-title">Jak to probíhá</h2>
           <p class="section-lead">Od prvního rozhovoru po spuštěný web.</p>
         </header>
         <ol class="steps">
@@ -334,7 +341,7 @@
     <section class="contact" id="kontakt" aria-labelledby="contact-title" data-pixels="14">
       <div class="container contact__grid">
         <div class="contact__intro" data-reveal>
-          <h2 class="contact__title" id="contact-title">Máte nápad?</h2>
+          <p class="section-kicker">04 / Začíná to zprávou</p><h2 class="contact__title" id="contact-title">Máte nápad?</h2>
           <p class="contact__sub">Postavíme ho.</p>
           <p class="contact__lead">Napište nám pár vět o&nbsp;tom, co chystáte. Ozveme se a&nbsp;domluvíme další krok.</p>
         </div>
